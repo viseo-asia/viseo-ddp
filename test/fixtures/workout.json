@@ -1,0 +1,7 @@
+{
+  "id": 101,
+  "payload": {
+    "type": "workout",
+    "description": "A period of time"
+  }
+}
