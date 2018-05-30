@@ -1,0 +1,19 @@
+service: demo-service
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: dev
+  region: ap-southeast-1 
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: demo
+          method: get
+plugins:
+  - serverless-plugin-webpack
+custom:
+  webpack:
+    config: ./../../webpack.config.js
+    series: true # run Webpack in series, useful for large projects. Defaults to false.

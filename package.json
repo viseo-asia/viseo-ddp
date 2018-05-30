@@ -9,12 +9,20 @@
   "author": "",
   "private": true,
   "devDependencies": {
-    "jest": "^23.0.1"
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "jest": "^23.0.1",
+    "serverless-plugin-webpack": "^1.5.1",
+    "webpack": "^4.10.1"
   },
   "jest": {
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "lib/**/*.{js,jsx}"
+      "src/lib/**/*.{js,jsx}"
     ]
+  },
+  "dependencies": {
+    "aws-sdk": "^2.248.1"
   }
 }
