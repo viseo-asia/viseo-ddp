@@ -8,18 +8,17 @@ const queueAdd = require("../lib/queueAdd");
 
 module.exports.workout = (event, context, callback) => {
   var params = {
-    MessageBody: JSON.stringify(event),
+    MessageBody: event.body,
     QueueUrl: QUEUE_URL
   };
 
   return queueAdd(sqs, params, (err, res) => {
     // err and res will be an object with a statusCode and body
-    // ex: {statusCode: 500}
-    // ex: {statusCode: 200}
+    // ex: {statusCode: 500} ex: {statusCode: 200}
     if (err) {
-      return callback(null, err)
+      return callback(null, err);
     }
 
-    return callback(null, res)
+    return callback(null, res);
   });
 };

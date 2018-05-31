@@ -2,7 +2,7 @@ const queueAdd = require("./queueAdd");
 
 describe("queueAdd", () => {
   const params = {
-    MessageBody: "Test Message Body",
+    MessageBody: '{ "message": "Message in a bottle" }',
     QueueUrl: "https://sqs.ap-southeast-1.amazonaws.com/xxxxxx/test"
   };
 
@@ -14,8 +14,8 @@ describe("queueAdd", () => {
     };
 
     queueAdd(sqsMock, params, (err, res) => {
+      console.log(101, res)
       expect(res.statusCode).toEqual(200);
-      expect(res.body.messageId).toEqual(501);
       done();
     });
   });
@@ -41,4 +41,12 @@ describe("queueAdd", () => {
       done();
     });
   });
+
+  it('should validate reject invalid input', done => {
+   queueAdd({}, {}, (err, res) => {
+    expect(res.statusCode).toEqual(400)
+    expect(JSON.parse(res.body).message).toMatch(/bad request/i)
+    done();
+   }) 
+  })
 });
